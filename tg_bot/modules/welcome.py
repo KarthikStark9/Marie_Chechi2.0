@@ -445,25 +445,6 @@ def clean_welcome(bot: Bot, update: Update, args: List[str]) -> str:
         return ""
 
 
-WELC_HELP_TXT = "നിങ്ങളുടെ ഗ്രൂപ്പിന്റെ സ്വാഗത / വിട സന്ദേശങ്ങൾ‌ ഒന്നിലധികം രീതികളിൽ‌ വ്യക്തിഗതമാക്കാൻ‌ കഴിയും."\
-                " സ്ഥിരസ്ഥിതി സ്വാഗത സന്ദേശം പോലെ സന്ദേശങ്ങൾ വ്യക്തിഗതമായി സൃഷ്ടിക്കണമെങ്കിൽ, നിങ്ങൾക്ക് ഈ *വേരിയബിളുകൾ* ഉപയോഗിക്കാം:"\
-                " - `{{first}}`:  ഇത് ഉപയോക്താവിന്റെ ആദ്യ നാമത്തെ പ്രതിനിധീകരിക്കുന്നു\n" \
-                " - `{{last}}`:  ഇത് ഉപയോക്താവിന്റെ അവസാന പേരിനെ പ്രതിനിധീകരിക്കുന്നു.\n" \
-                " - `{{fullname}}`: ഇത് ഉപയോക്താവിന്റെ പൂർണ്ണ നാമത്തെ പ്രതിനിധീകരിക്കുന്നു.\n" \
-                " - `{{username}}`:  ഇത് ഉപയോക്താവിന്റെ Username പ്രതിനിധീകരിക്കുന്നു.\n" \
-                " - `{{mention}}`: this simply *mentions* a user - tagging them with their first name.\n" \
-                " - `{{id}}`: ഇത് ഉപയോക്താവിന്റെ ഐഡിയെ പ്രതിനിധീകരിക്കുന്നു\n" \
-                " - `{{count}}`: ഇത് ഉപയോക്താവിന്റെ അംഗ നമ്പറിനെ പ്രതിനിധീകരിക്കുന്നു..\n" \
-                " - `{{chatname}}`:  ഇത് നിലവിലെ ചാറ്റ് നാമത്തെ പ്രതിനിധീകരിക്കുന്നു..\n" \
-                "\nഓരോ വേരിയബിളും മാറ്റിസ്ഥാപിക്കുന്നതിന് `{{}}` to be replaced.\n" \
-                "സ്വാഗത സന്ദേശങ്ങളും markdown ണിനെ പിന്തുണയ്ക്കുന്നു, അതിനാൽ നിങ്ങൾക്ക് ഏത് ഘടകങ്ങളും ബോൾഡ് / ഇറ്റാലിക് / കോഡ് / ലിങ്കുകൾ ആക്കാം. " \
-                "ബട്ടണുകളും പിന്തുണയ്‌ക്കുന്നു, അതിനാൽ ചില നല്ല ആമുഖ ബട്ടണുകൾ ഉപയോഗിച്ച് നിങ്ങളുടെ സ്വാഗതം ആകർഷകമാക്കും.\n" \
-                "നിങ്ങളുടെ നിയമങ്ങളുമായി ലിങ്കുചെയ്യുന്ന ഒരു ബട്ടൺ സൃഷ്ടിക്കുന്നതിന്, ഇത് ഉപയോഗിക്കുക: `[Rules](buttonurl://t.me/{}?start=group_id)`. " \
-                "Simply replace `group_id` with your group's id, which can be obtained via /id, and you're good to " \
-                "go. Note that group ids are usually preceded by a `-` sign; this is required, so please don't " \
-                "remove it.\n" \
-                "If you're feeling fun, you can even set images/gifs/videos/voice messages as the welcome message by " \
-                "replying to the desired media, and calling /setwelcome.".format(dispatcher.bot.username)
 
 
 @run_async
@@ -495,47 +476,3 @@ def __chat_settings__(chat_id, user_id):
            "It's goodbye preference is `{}`.".format(welcome_pref, goodbye_pref)
 
 
-__help__ = """
-{}
-
-*Admin only:*
- - /welcome <on/off>:  Welcome സന്ദേശങ്ങൾ പ്രാപ്തമാക്കുക / അപ്രാപ്തമാക്കുക.
- - /welcome: നിലവിലെ Welcome ക്രമീകരണങ്ങൾ കാണിക്കുന്നു.
- - /welcome noformat: ഫോർമാറ്റിംഗ് ഇല്ലാതെ നിലവിലെ Welcome ക്രമീകരണങ്ങൾ കാണിക്കുന്നു - നിങ്ങളുടെ സ്വാഗത സന്ദേശങ്ങൾ Recycle ചെയ്യാൻ ഉപയോഗപ്രദമാണ്!!
- - /goodbye -> അതേ ഉപയോഗം കൂടാതെ / സ്വാഗതം.
- - /setwelcome <sometext>: ഒരു ഇച്ഛാനുസൃത സ്വാഗത സന്ദേശം സജ്ജമാക്കുക. മീഡിയയ്ക്ക് മറുപടി നൽകുന്നത് ഉപയോഗിക്കുകയാണെങ്കിൽ, ആ മീഡിയ ഉപയോഗിക്കുന്നു.
- - /setgoodbye <sometext>:  ഒരു ഇച്ഛാനുസൃത വിട സന്ദേശം സജ്ജമാക്കുക. മീഡിയയ്ക്ക് മറുപടി നൽകുന്നത് ഉപയോഗിക്കുകയാണെങ്കിൽ, ആ മീഡിയ ഉപയോഗിക്കുന്നു...
- - /resetwelcome: Default ആയിട്ടുള്ള സ്വാഗത സന്ദേശത്തിലേക്ക് തിരിച്ചു പോവുക...
- - /resetgoodbye: Default ആയിട്ടുള്ള Good Bye സന്ദേശത്തിലേക്ക് തിരിച്ചു പോവുക
- - /clearjoin <on/off>: *Member* ജോയിൻ ആകുമ്പോൾ ഉള്ള മെസ്സേജ് ഡിലീറ്റ് ചെയ്യാം..
- - /cleanwelcome <on/off>: On പുതിയ അംഗത്തിൽ, ചാറ്റ് സ്പാം ചെയ്യുന്നത് ഒഴിവാക്കാൻ മുമ്പത്തെ സ്വാഗത സന്ദേശം ഇല്ലാതാക്കാൻ ശ്രമിക്കുക.
-
- - /welcomehelp: ഇഷ്‌ടാനുസൃത സ്വാഗത / വിട സന്ദേശങ്ങൾക്കായി കൂടുതൽ ഫോർമാറ്റിംഗ് വിവരങ്ങൾ കാണുക.
-""".format(WELC_HELP_TXT)
-
-__mod_name__ = "Welcomes/Goodbyes"
-
-NEW_MEM_HANDLER = MessageHandler(Filters.status_update.new_chat_members, new_member)
-LEFT_MEM_HANDLER = MessageHandler(Filters.status_update.left_chat_member, left_member)
-WELC_PREF_HANDLER = CommandHandler("welcome", welcome, pass_args=True, filters=Filters.group)
-GOODBYE_PREF_HANDLER = CommandHandler("goodbye", goodbye, pass_args=True, filters=Filters.group)
-SET_WELCOME = CommandHandler("setwelcome", set_welcome, filters=Filters.group)
-SET_GOODBYE = CommandHandler("setgoodbye", set_goodbye, filters=Filters.group)
-RESET_WELCOME = CommandHandler("resetwelcome", reset_welcome, filters=Filters.group)
-RESET_GOODBYE = CommandHandler("resetgoodbye", reset_goodbye, filters=Filters.group)
-CLEAN_WELCOME = CommandHandler("cleanwelcome", clean_welcome, pass_args=True, filters=Filters.group)
-DEL_JOINED = CommandHandler("clearjoin", del_joined, pass_args=True, filters=Filters.group)
-WELCOME_HELP = CommandHandler("welcomehelp", welcome_help)
-
-
-dispatcher.add_handler(NEW_MEM_HANDLER)
-dispatcher.add_handler(LEFT_MEM_HANDLER)
-dispatcher.add_handler(WELC_PREF_HANDLER)
-dispatcher.add_handler(GOODBYE_PREF_HANDLER)
-dispatcher.add_handler(SET_WELCOME)
-dispatcher.add_handler(SET_GOODBYE)
-dispatcher.add_handler(RESET_WELCOME)
-dispatcher.add_handler(RESET_GOODBYE)
-dispatcher.add_handler(CLEAN_WELCOME)
-dispatcher.add_handler(DEL_JOINED)
-dispatcher.add_handler(WELCOME_HELP)
